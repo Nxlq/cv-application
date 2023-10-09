@@ -1,16 +1,23 @@
 .resume-preview__container {
   border: solid 1px black;
+  padding: 2.3rem;
+  --section-border: solid black 2px;
 }
-
-/* STYLES FOR THE FIRST RESUME TEMPLATE */
 
 .resume-head__wrapper {
   justify-content: center;
   text-align: center;
   color: black;
   font-size: 1rem;
+  /* border-bottom: var(--section-border); */
+  padding-bottom: 3.2rem;
 }
 
 .resume-head__wrapper h2 {
-  margin-bottom: 0;
+  margin: 0;
+}
+
+.resume-head__wrapper p {
+  padding: 0;
+  margin: 0;
 }

@@ -2,6 +2,8 @@ import { useState } from "react";
 import "../styles/form.css";
 
 export default function PersonalDetailsForm({ personalDetails, handleInput }) {
+  const { fullName, email, phoneNumber, location } = personalDetails;
+
   return (
     <form action="">
       <h2>Personal Details</h2>
@@ -11,13 +13,18 @@ export default function PersonalDetailsForm({ personalDetails, handleInput }) {
           <input
             type="text"
             placeholder="First and last name"
-            value={personalDetails.fullname}
+            value={fullName}
             onChange={(e) => handleInput("fullName", e)}
           ></input>
         </label>
         <label>
           Email
-          <input type="email" placeholder="Enter email"></input>
+          <input
+            type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => handleInput("email", e)}
+          ></input>
         </label>
         <label>
           Phone number
@@ -25,14 +32,17 @@ export default function PersonalDetailsForm({ personalDetails, handleInput }) {
             type="tel"
             pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
             placeholder="Enter phone number"
+            value={phoneNumber}
+            onChange={(e) => handleInput("phoneNumber", e)}
           ></input>
         </label>
         <label>
           Location
           <input
-            type="tel"
-            pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+            type="text"
             placeholder="City, State"
+            value={location}
+            onChange={(e) => handleInput("location", e)}
           ></input>
         </label>
       </div>
