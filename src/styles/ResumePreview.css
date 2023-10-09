@@ -1,0 +1,16 @@
+.resume-preview__container {
+  border: solid 1px black;
+}
+
+/* STYLES FOR THE FIRST RESUME TEMPLATE */
+
+.resume-head__wrapper {
+  justify-content: center;
+  text-align: center;
+  color: black;
+  font-size: 1rem;
+}
+
+.resume-head__wrapper h2 {
+  margin-bottom: 0;
+}
