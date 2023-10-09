@@ -4,13 +4,15 @@
   --section-border: solid black 2px;
 }
 
+/* -------------------- RESUME HEAD SYLING -------------------- */
+
 .resume-head__wrapper {
   justify-content: center;
   text-align: center;
   color: black;
   font-size: 1rem;
   /* border-bottom: var(--section-border); */
-  padding-bottom: 3.2rem;
+  padding-bottom: 1rem;
 }
 
 .resume-head__wrapper h2 {
@@ -20,4 +22,36 @@
 .resume-head__wrapper p {
   padding: 0;
   margin: 0;
+}
+
+/* -------------------- Education Section -------------------- */
+
+h3,
+h4,
+h5,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.education__wrapper {
+  border-top: var(--section-border);
+  display: flex;
+  justify-content: space-between;
+}
+
+.date-location {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  font-weight: 500;
+}
+
+.degree-info {
+  font-style: italic;
+  /* font-weight: 400; */
+}
+
+.gpa-info {
+  font-weight: 500;
 }
