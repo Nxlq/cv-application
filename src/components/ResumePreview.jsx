@@ -15,34 +15,55 @@ function ResumeHead({ personalDetails }) {
   );
 }
 
-function EducationSection() {
+function EducationSection({ educationDetails }) {
+  const { school, degree, gpa, dateGraduated, location } = educationDetails;
+
+  function getSchoolsAcronym(schoolName) {
+    if (!schoolName) return;
+
+    const words = schoolName.trim().split(" ");
+    const acronym = words
+      .map((word) => {
+        if (word !== "of") return word[0].toUpperCase();
+      })
+      .join("");
+    return acronym;
+  }
+
+  const schoolsAcronym = getSchoolsAcronym(school);
+
   return (
     <section>
       <h3>Education</h3>
       <div className="education__wrapper">
         <div>
-          <h4>Harvard Univeristy (HU)</h4>
+          <h4>
+            {school ? school : "Name of School"} (
+            {schoolsAcronym ? schoolsAcronym : "ABV"})
+          </h4>
           <h5 className="degree-info">
-            Bachelor of Astrochemistry Quantam Computing Cell Engineering
+            {degree ? degree : "Degree/Certificate earned"}
           </h5>
-          <span className="gpa-info">
-            Major GPA: 5.2/4.0; Overall GPA: 5.0/4.0
-          </span>
+          <span className="gpa-info">Major GPA: {gpa ? gpa : "X.X"}/4.0</span>
         </div>
         <div className="date-location">
-          <span className="location">Brooklyn, Ny</span>
-          <span className="date">May 2021</span>
+          <span className="location">
+            {location ? location : "Schools, Location"}
+          </span>
+          <span className="date">
+            {dateGraduated ? dateGraduated : "Month , Year"}
+          </span>
         </div>
       </div>
     </section>
   );
 }
 
-export default function ResumePreview({ personalDetails }) {
+export default function ResumePreview({ personalDetails, educationDetails }) {
   return (
     <div className="resume-preview__container">
       <ResumeHead personalDetails={personalDetails} />
-      <EducationSection />
+      <EducationSection educationDetails={educationDetails} />
     </div>
   );
 }

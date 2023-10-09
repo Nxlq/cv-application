@@ -12,8 +12,20 @@ function App() {
     location: "",
   });
 
-  function handleInput(detailType, e) {
+  const [educationDetails, setEducationDetails] = useState({
+    school: "",
+    degree: "",
+    gpa: "",
+    dateGraduated: "",
+    location: "",
+  });
+
+  function handlePersonalInput(detailType, e) {
     setPersonalDetails({ ...personalDetails, [detailType]: e.target.value });
+  }
+
+  function handleEducationInput(detailType, e) {
+    setEducationDetails({ ...educationDetails, [detailType]: e.target.value });
   }
 
   return (
@@ -21,12 +33,18 @@ function App() {
       <div>
         <PersonalDetailsForm
           personalDetails={personalDetails}
-          handleInput={handleInput}
+          handleInput={handlePersonalInput}
         />
-        <EducationForm />
+        <EducationForm
+          educationDetails={educationDetails}
+          handleInput={handleEducationInput}
+        />
       </div>
 
-      <ResumePreview personalDetails={personalDetails} />
+      <ResumePreview
+        personalDetails={personalDetails}
+        educationDetails={educationDetails}
+      />
     </>
   );
 }
