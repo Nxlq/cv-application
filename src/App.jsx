@@ -20,6 +20,13 @@ function App() {
     location: "",
   });
 
+  const [activeFormId, setActiveFormId] = useState(0);
+
+  function handleFormToggle(formId) {
+    if (formId === activeFormId) return setActiveFormId(null);
+    setActiveFormId(formId);
+  }
+
   function handlePersonalInput(detailType, e) {
     setPersonalDetails({ ...personalDetails, [detailType]: e.target.value });
   }
@@ -34,10 +41,16 @@ function App() {
         <PersonalDetailsForm
           personalDetails={personalDetails}
           handleInput={handlePersonalInput}
+          handleFormToggle={handleFormToggle}
+          formId={0}
+          isActive={activeFormId === 0}
         />
         <EducationForm
           educationDetails={educationDetails}
           handleInput={handleEducationInput}
+          handleFormToggle={handleFormToggle}
+          formId={1}
+          isActive={activeFormId === 1}
         />
       </div>
 

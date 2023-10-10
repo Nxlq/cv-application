@@ -55,3 +55,9 @@ p {
 .gpa-info {
   font-weight: 500;
 }
+
+.btn-toggle-form {
+  background-color: white;
+  display: flex;
+  place-items: center;
+}

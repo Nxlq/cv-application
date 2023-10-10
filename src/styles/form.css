@@ -11,6 +11,21 @@ form h2 {
   padding-bottom: 1.3rem;
 }
 
+.form-header__wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-toggle-form {
+  height: 40px;
+  width: 70px;
+  /* outline: solid black 1px; */
+}
+
+svg {
+  height: 40px;
+}
+
 .form-inputs__wrapper {
   display: flex;
   flex-direction: column;
