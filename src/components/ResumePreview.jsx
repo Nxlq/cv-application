@@ -97,7 +97,6 @@ function ExperienceSection({ experienceDetails }) {
               <li key={bulletObj.id}>{bulletObj.description}</li>
             ))
           : null}
-        <li>{curBulletPoint}</li>
       </BulletPoints>
     </section>
   );

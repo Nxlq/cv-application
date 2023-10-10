@@ -7,6 +7,9 @@ export default function ExperienceForm({
   formId,
   isActive,
   handleBulletAdd,
+  handleBulletRemove,
+  curBulletPoint,
+  handleBulletInput,
 }) {
   const {
     company,
@@ -14,7 +17,6 @@ export default function ExperienceForm({
     startDate,
     endDate,
     location,
-    curBulletPoint,
     bulletPoints,
     addBulletPoint,
   } = experienceDetails;
@@ -93,16 +95,26 @@ export default function ExperienceForm({
               type="text"
               placeholder="Brief bullet point description"
               value={curBulletPoint}
-              onChange={(e) => handleInput("curBulletPoint", e)}
+              onChange={(e) => handleBulletInput(e)}
             ></input>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                handleBulletAdd(curBulletPoint);
-              }}
-            >
-              Add Bullet
-            </button>
+            <div className="bullet-btns__wrapper">
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleBulletAdd(curBulletPoint);
+                }}
+              >
+                Add Bullet
+              </button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleBulletRemove();
+                }}
+              >
+                Remove Bullet
+              </button>
+            </div>
           </label>
         </div>
       )}

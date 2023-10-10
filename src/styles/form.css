@@ -64,3 +64,14 @@ input::placeholder {
 .start-end-date-input {
   /* width: 80%; */
 }
+
+.bullet-btns__wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+}
+
+.bullet-btns__wrapper button {
+  width: 45%;
+  border: solid black 1px;
+}

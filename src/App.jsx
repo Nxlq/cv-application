@@ -28,11 +28,22 @@ function App() {
     startDate: "",
     endDate: "",
     location: "",
-    curBulletPoint: "", // to render the live input, on bullet submit we push this down to the bulletPoints
-    bulletPoints: [], // [{id: 0, description: .lkjflka}, {id:1, description: llfjdlkf}]
+    bulletPoints: [{ id: 0, description: "" }], // [{id: 0, description: .lkjflka}, {id:1, description: llfjdlkf}]
   });
 
+  const [activeBulletId, setActiveBulletId] = useState(0);
+
+  const activeBulletIndex = experienceDetails.bulletPoints.findIndex(
+    (bulletPoint) => bulletPoint.id === activeBulletId
+  );
+  console.log(activeBulletIndex);
+
   const [activeFormId, setActiveFormId] = useState(0);
+
+  const curBulletPoint =
+    experienceDetails.bulletPoints[activeBulletIndex].description;
+
+  console.log(curBulletPoint);
 
   function handleFormToggle(formId) {
     if (formId === activeFormId) return setActiveFormId(null);
@@ -48,15 +59,26 @@ function App() {
   }
 
   function handleExperienceInput(detailType, e) {
+    // DO NOT use this function for the bullet input on the form - use the handleBulletInput instead
     setExperienceDetails({
       ...experienceDetails,
       [detailType]: e.target.value,
     });
   }
 
-  function handleBulletAdd(curBulletPoint) {
+  function handleBulletInput(e) {
+    const newBulletPointsArr = [...experienceDetails.bulletPoints];
+    newBulletPointsArr[activeBulletIndex].description = e.target.value;
+
+    setExperienceDetails({
+      ...experienceDetails,
+      bulletPoints: newBulletPointsArr,
+    });
+  }
+
+  function handleBulletAdd() {
     const bulletPointObj = {
-      description: experienceDetails.curBulletPoint,
+      description: "",
       id: uuidv4(),
     };
 
@@ -65,7 +87,34 @@ function App() {
 
     setExperienceDetails({
       ...experienceDetails,
-      curBulletPoint: "",
+      bulletPoints: newBulletPointsArr,
+    });
+
+    setActiveBulletId(bulletPointObj.id);
+
+    console.log(experienceDetails);
+  }
+
+  function handleBulletRemove() {
+    // copy the bulletpoints into a new array and remove the last one
+    const newBulletPointsArr = [...experienceDetails.bulletPoints];
+    const removedBullet = newBulletPointsArr.pop();
+
+    let previousBullet;
+    // if the array was or is currently empty after popping it
+    if (!removedBullet || newBulletPointsArr.length === 0) {
+      previousBullet = "";
+    } else if (removedBullet === "") {
+      console.log("REMOVED EMPTY");
+    } else {
+      //if the array length was greater than two then set the newCurBullet value to the old one
+      previousBullet =
+        newBulletPointsArr[newBulletPointsArr.length - 1].description;
+    }
+
+    setExperienceDetails({
+      ...experienceDetails,
+      curBulletPoint: previousBullet,
       bulletPoints: newBulletPointsArr,
     });
   }
@@ -94,12 +143,16 @@ function App() {
           formId={2}
           isActive={activeFormId === 2}
           handleBulletAdd={handleBulletAdd}
+          handleBulletRemove={handleBulletRemove}
+          curBulletPoint={curBulletPoint}
+          handleBulletInput={handleBulletInput}
         />
       </div>
       <ResumePreview
         personalDetails={personalDetails}
         educationDetails={educationDetails}
         experienceDetails={experienceDetails}
+        curBulletPoint={curBulletPoint}
       />
     </>
   );
