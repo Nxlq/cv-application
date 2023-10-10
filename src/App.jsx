@@ -3,6 +3,7 @@ import "/src/styles/App.css";
 import PersonalDetailsForm from "./components/PersonalDetails";
 import ResumePreview from "./components/ResumePreview";
 import EducationForm from "./components/EducationForm";
+import ExperienceForm from "./components/ExperienceForm";
 
 function App() {
   const [personalDetails, setPersonalDetails] = useState({
@@ -52,8 +53,12 @@ function App() {
           formId={1}
           isActive={activeFormId === 1}
         />
+        <ExperienceForm
+          handleFormToggle={handleFormToggle}
+          formId={2}
+          isActive={activeFormId === 2}
+        />
       </div>
-
       <ResumePreview
         personalDetails={personalDetails}
         educationDetails={educationDetails}

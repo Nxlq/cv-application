@@ -34,10 +34,11 @@ p {
   margin: 0;
 }
 
-.education__wrapper {
+.section__wrapper {
   border-top: var(--section-border);
   display: flex;
   justify-content: space-between;
+  padding-bottom: 20px;
 }
 
 .date-location {
@@ -47,7 +48,7 @@ p {
   font-weight: 500;
 }
 
-.degree-info {
+h5 {
   font-style: italic;
   /* font-weight: 400; */
 }

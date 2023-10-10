@@ -35,7 +35,7 @@ function EducationSection({ educationDetails }) {
   return (
     <section>
       <h3>Education</h3>
-      <div className="education__wrapper">
+      <div className="section__wrapper">
         <div>
           <h4>
             {school ? school : "Name of School"} (
@@ -59,11 +59,38 @@ function EducationSection({ educationDetails }) {
   );
 }
 
+function BulletPoints({ children }) {
+  return <ul>{children}</ul>;
+}
+
+function ExperienceSection() {
+  return (
+    <section>
+      <h3>Experience</h3>
+      <div className="section__wrapper">
+        <div>
+          <h4>Job Title</h4>
+          <h5>Company Name</h5>
+        </div>
+        <div className="date-location">
+          <span className="location">City, State</span>
+          <span className="date">Month , Year</span>
+        </div>
+      </div>
+      <BulletPoints>
+        <li>{"lkdjflaskdjflksadjflkdsjfldsjfldsjkfldskjflkdsjfl"}</li>
+        <li>{"lkdjflaskdjflksadjflkdsjfldsjfldsjkfldskjflkdsjfl"}</li>
+      </BulletPoints>
+    </section>
+  );
+}
+
 export default function ResumePreview({ personalDetails, educationDetails }) {
   return (
     <div className="resume-preview__container">
       <ResumeHead personalDetails={personalDetails} />
       <EducationSection educationDetails={educationDetails} />
+      <ExperienceSection />
     </div>
   );
 }
