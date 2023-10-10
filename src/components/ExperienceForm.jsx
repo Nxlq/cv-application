@@ -6,6 +6,7 @@ export default function ExperienceForm({
   handleFormToggle,
   formId,
   isActive,
+  handleBulletAdd,
 }) {
   const {
     company,
@@ -15,6 +16,7 @@ export default function ExperienceForm({
     location,
     curBulletPoint,
     bulletPoints,
+    addBulletPoint,
   } = experienceDetails;
 
   return (
@@ -40,7 +42,7 @@ export default function ExperienceForm({
             Company Name
             <input
               type="text"
-              placeholder="Enter school/university"
+              placeholder="Enter comany's name"
               value={company}
               onChange={(e) => handleInput("company", e)}
             ></input>
@@ -49,7 +51,7 @@ export default function ExperienceForm({
             Position Title
             <input
               type="text"
-              placeholder="Enter degree/certificate earned"
+              placeholder="Enter position title"
               value={positionTitle}
               onChange={(e) => handleInput("positionTitle", e)}
             ></input>
@@ -93,7 +95,14 @@ export default function ExperienceForm({
               value={curBulletPoint}
               onChange={(e) => handleInput("curBulletPoint", e)}
             ></input>
-            <button>Add Bullet</button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                handleBulletAdd(curBulletPoint);
+              }}
+            >
+              Add Bullet
+            </button>
           </label>
         </div>
       )}

@@ -4,6 +4,7 @@ import PersonalDetailsForm from "./components/PersonalDetails";
 import ResumePreview from "./components/ResumePreview";
 import EducationForm from "./components/EducationForm";
 import ExperienceForm from "./components/ExperienceForm";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const [personalDetails, setPersonalDetails] = useState({
@@ -27,8 +28,8 @@ function App() {
     startDate: "",
     endDate: "",
     location: "",
-    curBulletPoint: "",
-    bulletPoints: [],
+    curBulletPoint: "", // to render the live input, on bullet submit we push this down to the bulletPoints
+    bulletPoints: [], // [{id: 0, description: .lkjflka}, {id:1, description: llfjdlkf}]
   });
 
   const [activeFormId, setActiveFormId] = useState(0);
@@ -50,6 +51,22 @@ function App() {
     setExperienceDetails({
       ...experienceDetails,
       [detailType]: e.target.value,
+    });
+  }
+
+  function handleBulletAdd(curBulletPoint) {
+    const bulletPointObj = {
+      description: experienceDetails.curBulletPoint,
+      id: uuidv4(),
+    };
+
+    const newBulletPointsArr = [...experienceDetails.bulletPoints];
+    newBulletPointsArr.push(bulletPointObj);
+
+    setExperienceDetails({
+      ...experienceDetails,
+      curBulletPoint: "",
+      bulletPoints: newBulletPointsArr,
     });
   }
 
@@ -76,6 +93,7 @@ function App() {
           handleFormToggle={handleFormToggle}
           formId={2}
           isActive={activeFormId === 2}
+          handleBulletAdd={handleBulletAdd}
         />
       </div>
       <ResumePreview

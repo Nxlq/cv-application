@@ -82,7 +82,9 @@ function ExperienceSection({ experienceDetails }) {
           <h5>{company ? company : "Company Name"}</h5>
         </div>
         <div className="date-location">
-          <span className="location">City, State</span>
+          <span className="location">
+            {location ? location : "City, State"}
+          </span>
           <span className="date">
             {startDate ? startDate : "Month Year"} -{" "}
             {endDate ? endDate : "Month Year"}
@@ -90,8 +92,12 @@ function ExperienceSection({ experienceDetails }) {
         </div>
       </div>
       <BulletPoints>
-        <li>{"lkdjflaskdjflksadjflkdsjfldsjfldsjkfldskjflkdsjfl"}</li>
-        <li>{"lkdjflaskdjflksadjflkdsjfldsjfldsjkfldskjflkdsjfl"}</li>
+        {bulletPoints.length > 0
+          ? bulletPoints.map((bulletObj) => (
+              <li key={bulletObj.id}>{bulletObj.description}</li>
+            ))
+          : null}
+        <li>{curBulletPoint}</li>
       </BulletPoints>
     </section>
   );
