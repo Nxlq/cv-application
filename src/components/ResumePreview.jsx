@@ -63,18 +63,30 @@ function BulletPoints({ children }) {
   return <ul>{children}</ul>;
 }
 
-function ExperienceSection() {
+function ExperienceSection({ experienceDetails }) {
+  const {
+    company,
+    positionTitle,
+    startDate,
+    endDate,
+    location,
+    curBulletPoint,
+    bulletPoints,
+  } = experienceDetails;
   return (
     <section>
       <h3>Experience</h3>
       <div className="section__wrapper">
         <div>
-          <h4>Job Title</h4>
-          <h5>Company Name</h5>
+          <h4>{positionTitle ? positionTitle : "Position Title"}</h4>
+          <h5>{company ? company : "Company Name"}</h5>
         </div>
         <div className="date-location">
           <span className="location">City, State</span>
-          <span className="date">Month , Year</span>
+          <span className="date">
+            {startDate ? startDate : "Month Year"} -{" "}
+            {endDate ? endDate : "Month Year"}
+          </span>
         </div>
       </div>
       <BulletPoints>
@@ -85,12 +97,16 @@ function ExperienceSection() {
   );
 }
 
-export default function ResumePreview({ personalDetails, educationDetails }) {
+export default function ResumePreview({
+  personalDetails,
+  educationDetails,
+  experienceDetails,
+}) {
   return (
     <div className="resume-preview__container">
       <ResumeHead personalDetails={personalDetails} />
       <EducationSection educationDetails={educationDetails} />
-      <ExperienceSection />
+      <ExperienceSection experienceDetails={experienceDetails} />
     </div>
   );
 }

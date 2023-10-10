@@ -1,6 +1,22 @@
 import "../styles/form.css";
 
-export default function ExperienceForm({ handleFormToggle, formId, isActive }) {
+export default function ExperienceForm({
+  experienceDetails,
+  handleInput,
+  handleFormToggle,
+  formId,
+  isActive,
+}) {
+  const {
+    company,
+    positionTitle,
+    startDate,
+    endDate,
+    location,
+    curBulletPoint,
+    bulletPoints,
+  } = experienceDetails;
+
   return (
     <form action="">
       <div className="form-header__wrapper">
@@ -22,13 +38,20 @@ export default function ExperienceForm({ handleFormToggle, formId, isActive }) {
         <div className="form-inputs__wrapper">
           <label>
             Company Name
-            <input type="text" placeholder="Enter school/university"></input>
+            <input
+              type="text"
+              placeholder="Enter school/university"
+              value={company}
+              onChange={(e) => handleInput("company", e)}
+            ></input>
           </label>
           <label>
             Position Title
             <input
               type="text"
               placeholder="Enter degree/certificate earned"
+              value={positionTitle}
+              onChange={(e) => handleInput("positionTitle", e)}
             ></input>
           </label>
           <div className="start-end-date__wrapper">
@@ -38,6 +61,8 @@ export default function ExperienceForm({ handleFormToggle, formId, isActive }) {
                 type="text"
                 placeholder="Month, Year"
                 className="start-end-date-input"
+                value={startDate}
+                onChange={(e) => handleInput("startDate", e)}
               ></input>
             </label>
             <label>
@@ -46,18 +71,27 @@ export default function ExperienceForm({ handleFormToggle, formId, isActive }) {
                 type="text"
                 placeholder="Month, Year"
                 className="start-end-date-input"
+                value={endDate}
+                onChange={(e) => handleInput("endDate", e)}
               ></input>
             </label>
           </div>
           <label>
             Location
-            <input type="text" placeholder="City, State"></input>
+            <input
+              type="text"
+              placeholder="City, State"
+              value={location}
+              onChange={(e) => handleInput("location", e)}
+            ></input>
           </label>
           <label>
             BulletPoint
             <input
               type="text"
               placeholder="Brief bullet point description"
+              value={curBulletPoint}
+              onChange={(e) => handleInput("curBulletPoint", e)}
             ></input>
             <button>Add Bullet</button>
           </label>

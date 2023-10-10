@@ -21,6 +21,16 @@ function App() {
     location: "",
   });
 
+  const [experienceDetails, setExperienceDetails] = useState({
+    company: "",
+    positionTitle: "",
+    startDate: "",
+    endDate: "",
+    location: "",
+    curBulletPoint: "",
+    bulletPoints: [],
+  });
+
   const [activeFormId, setActiveFormId] = useState(0);
 
   function handleFormToggle(formId) {
@@ -34,6 +44,13 @@ function App() {
 
   function handleEducationInput(detailType, e) {
     setEducationDetails({ ...educationDetails, [detailType]: e.target.value });
+  }
+
+  function handleExperienceInput(detailType, e) {
+    setExperienceDetails({
+      ...experienceDetails,
+      [detailType]: e.target.value,
+    });
   }
 
   return (
@@ -54,6 +71,8 @@ function App() {
           isActive={activeFormId === 1}
         />
         <ExperienceForm
+          experienceDetails={experienceDetails}
+          handleInput={handleExperienceInput}
           handleFormToggle={handleFormToggle}
           formId={2}
           isActive={activeFormId === 2}
@@ -62,6 +81,7 @@ function App() {
       <ResumePreview
         personalDetails={personalDetails}
         educationDetails={educationDetails}
+        experienceDetails={experienceDetails}
       />
     </>
   );
