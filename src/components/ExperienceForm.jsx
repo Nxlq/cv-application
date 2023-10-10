@@ -1,5 +1,21 @@
 import "../styles/form.css";
 
+function BulletTab({ bulletCount, handleClick, id }) {
+  return (
+    <>
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          console.log(id);
+          handleClick(id);
+        }}
+      >
+        Bullet {bulletCount}
+      </button>
+    </>
+  );
+}
+
 export default function ExperienceForm({
   experienceDetails,
   handleInput,
@@ -10,6 +26,7 @@ export default function ExperienceForm({
   handleBulletRemove,
   curBulletPoint,
   handleBulletInput,
+  handleBulletClick,
 }) {
   const {
     company,
@@ -97,6 +114,14 @@ export default function ExperienceForm({
               value={curBulletPoint}
               onChange={(e) => handleBulletInput(e)}
             ></input>
+            {bulletPoints.map((bulletPointObj, i) => (
+              <BulletTab
+                key={bulletPointObj.id}
+                id={bulletPointObj.id}
+                bulletCount={i + 1}
+                handleClick={handleBulletClick}
+              />
+            ))}
             <div className="bullet-btns__wrapper">
               <button
                 onClick={(e) => {

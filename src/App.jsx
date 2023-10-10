@@ -32,6 +32,7 @@ function App() {
   });
 
   const [activeBulletId, setActiveBulletId] = useState(0);
+  console.log({ activeBulletId });
 
   const activeBulletIndex = experienceDetails.bulletPoints.findIndex(
     (bulletPoint) => bulletPoint.id === activeBulletId
@@ -76,10 +77,30 @@ function App() {
     });
   }
 
+  function handleBulletClick(selectedBulletId) {
+    const selectedBulletIndex = experienceDetails.bulletPoints.findIndex(
+      (bulletPoint) => {
+        return bulletPoint.id == selectedBulletId;
+      }
+    );
+
+    console.log({ selectedBulletIndex });
+    // const newBulletPointsArr = [...experienceDetails.bulletPoints];
+    // newBulletPointsArr.forEach(
+    //   (bulletObj, i) => (bulletObj.isActive = selectedBulletIndex === i)
+    // )
+
+    setActiveBulletId(experienceDetails.bulletPoints[selectedBulletIndex].id);
+    // setExperienceDetails({
+    //   ...experienceDetails,
+    //   bulletPoints: newBulletPointsArr,
+    // });
+  }
+
   function handleBulletAdd() {
     const bulletPointObj = {
-      description: "",
       id: uuidv4(),
+      description: "",
     };
 
     const newBulletPointsArr = [...experienceDetails.bulletPoints];
@@ -146,6 +167,7 @@ function App() {
           handleBulletRemove={handleBulletRemove}
           curBulletPoint={curBulletPoint}
           handleBulletInput={handleBulletInput}
+          handleBulletClick={handleBulletClick}
         />
       </div>
       <ResumePreview
