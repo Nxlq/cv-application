@@ -28,10 +28,10 @@ function App() {
     startDate: "",
     endDate: "",
     location: "",
-    bulletPoints: [{ id: 0, description: "" }], // [{id: 0, description: .lkjflka}, {id:1, description: llfjdlkf}]
+    bulletPoints: [{ id: "init", description: "", isActive: true }], // [{id: 0, description: .lkjflka}, {id:1, description: llfjdlkf}]
   });
 
-  const [activeBulletId, setActiveBulletId] = useState(0);
+  const [activeBulletId, setActiveBulletId] = useState("init");
   console.log({ activeBulletId });
 
   const activeBulletIndex = experienceDetails.bulletPoints.findIndex(
@@ -42,7 +42,7 @@ function App() {
   const [activeFormId, setActiveFormId] = useState(0);
 
   const curBulletPoint =
-    experienceDetails.bulletPoints[activeBulletIndex].description;
+    experienceDetails.bulletPoints[activeBulletIndex]?.description || "";
 
   console.log(curBulletPoint);
 
@@ -68,6 +68,7 @@ function App() {
   }
 
   function handleBulletInput(e) {
+    if (experienceDetails.bulletPoints.length === 0) return;
     const newBulletPointsArr = [...experienceDetails.bulletPoints];
     newBulletPointsArr[activeBulletIndex].description = e.target.value;
 
@@ -78,6 +79,7 @@ function App() {
   }
 
   function handleBulletClick(selectedBulletId) {
+    console.log(experienceDetails.bulletPoints);
     const selectedBulletIndex = experienceDetails.bulletPoints.findIndex(
       (bulletPoint) => {
         return bulletPoint.id == selectedBulletId;
@@ -85,16 +87,16 @@ function App() {
     );
 
     console.log({ selectedBulletIndex });
-    // const newBulletPointsArr = [...experienceDetails.bulletPoints];
-    // newBulletPointsArr.forEach(
-    //   (bulletObj, i) => (bulletObj.isActive = selectedBulletIndex === i)
-    // )
+    const newBulletPointsArr = [...experienceDetails.bulletPoints];
+    newBulletPointsArr.forEach(
+      (bulletObj, i) => (bulletObj.isActive = selectedBulletIndex === i)
+    );
 
     setActiveBulletId(experienceDetails.bulletPoints[selectedBulletIndex].id);
-    // setExperienceDetails({
-    //   ...experienceDetails,
-    //   bulletPoints: newBulletPointsArr,
-    // });
+    setExperienceDetails({
+      ...experienceDetails,
+      bulletPoints: newBulletPointsArr,
+    });
   }
 
   function handleBulletAdd() {
@@ -116,28 +118,25 @@ function App() {
     console.log(experienceDetails);
   }
 
+  // handles what happens when the user clicks the remove bullet button
   function handleBulletRemove() {
-    // copy the bulletpoints into a new array and remove the last one
-    const newBulletPointsArr = [...experienceDetails.bulletPoints];
-    const removedBullet = newBulletPointsArr.pop();
-
-    let previousBullet;
-    // if the array was or is currently empty after popping it
-    if (!removedBullet || newBulletPointsArr.length === 0) {
-      previousBullet = "";
-    } else if (removedBullet === "") {
-      console.log("REMOVED EMPTY");
-    } else {
-      //if the array length was greater than two then set the newCurBullet value to the old one
-      previousBullet =
-        newBulletPointsArr[newBulletPointsArr.length - 1].description;
-    }
+    if (experienceDetails.bulletPoints.length === 0) return;
+    const newBulletPointsArr = [...experienceDetails.bulletPoints].toSpliced(
+      activeBulletIndex,
+      1
+    );
 
     setExperienceDetails({
       ...experienceDetails,
-      curBulletPoint: previousBullet,
       bulletPoints: newBulletPointsArr,
     });
+    // this controls what the activeBulletId state will be set to after deleting the active item
+
+    if (newBulletPointsArr.length === 0) {
+      setActiveBulletId(null);
+    } else {
+      setActiveBulletId(newBulletPointsArr[newBulletPointsArr.length - 1].id);
+    }
   }
 
   return (

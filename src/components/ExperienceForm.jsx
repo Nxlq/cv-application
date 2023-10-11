@@ -28,15 +28,8 @@ export default function ExperienceForm({
   handleBulletInput,
   handleBulletClick,
 }) {
-  const {
-    company,
-    positionTitle,
-    startDate,
-    endDate,
-    location,
-    bulletPoints,
-    addBulletPoint,
-  } = experienceDetails;
+  const { company, positionTitle, startDate, endDate, location, bulletPoints } =
+    experienceDetails;
 
   return (
     <form action="">
@@ -110,7 +103,11 @@ export default function ExperienceForm({
             BulletPoint
             <input
               type="text"
-              placeholder="Brief bullet point description"
+              placeholder={
+                bulletPoints.length > 0
+                  ? "Brief bullet point description"
+                  : "Click the add bullet button to begin!"
+              }
               value={curBulletPoint}
               onChange={(e) => handleBulletInput(e)}
             ></input>
