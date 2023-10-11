@@ -41,6 +41,13 @@ p {
   padding-bottom: 20px;
 }
 
+.experience-header__wrapper {
+  display: flex;
+  justify-content: space-between;
+  border-top: var(--section-border);
+  padding-bottom: 7px;
+}
+
 .date-location {
   display: flex;
   flex-direction: column;
@@ -61,4 +68,8 @@ h5 {
   background-color: white;
   display: flex;
   place-items: center;
+}
+
+ul {
+  margin: 0;
 }

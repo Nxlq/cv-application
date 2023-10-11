@@ -51,21 +51,21 @@ export default function ExperienceForm({
       {!isActive ? null : (
         <div className="form-inputs__wrapper">
           <label>
-            Company Name
-            <input
-              type="text"
-              placeholder="Enter comany's name"
-              value={company}
-              onChange={(e) => handleInput("company", e)}
-            ></input>
-          </label>
-          <label>
             Position Title
             <input
               type="text"
               placeholder="Enter position title"
               value={positionTitle}
               onChange={(e) => handleInput("positionTitle", e)}
+            ></input>
+          </label>
+          <label>
+            Company Name
+            <input
+              type="text"
+              placeholder="Enter comany's name"
+              value={company}
+              onChange={(e) => handleInput("company", e)}
             ></input>
           </label>
           <div className="start-end-date__wrapper">

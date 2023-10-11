@@ -76,7 +76,7 @@ function ExperienceSection({ experienceDetails }) {
   return (
     <section>
       <h3>Experience</h3>
-      <div className="section__wrapper">
+      <div className="experience-header__wrapper">
         <div>
           <h4>{positionTitle ? positionTitle : "Position Title"}</h4>
           <h5>{company ? company : "Company Name"}</h5>
