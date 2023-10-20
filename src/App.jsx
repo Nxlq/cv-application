@@ -6,6 +6,10 @@ import EducationForm from "./components/EducationForm";
 import ExperienceForm from "./components/ExperienceForm";
 import { v4 as uuidv4 } from "uuid";
 
+function AddExperienceButton({ handleClick }) {
+  return <button onClick={(e) => handleClick(e)}>Add Experience</button>;
+}
+
 function App() {
   const [personalDetails, setPersonalDetails] = useState({
     fullName: "",
@@ -22,33 +26,57 @@ function App() {
     location: "",
   });
 
-  const [experienceDetails, setExperienceDetails] = useState({
-    company: "",
-    positionTitle: "",
-    startDate: "",
-    endDate: "",
-    location: "",
-    bulletPoints: [{ id: "init", description: "", isActive: true }], // [{id: 0, description: .lkjflka}, {id:1, description: llfjdlkf}]
-  });
+  // const [experienceDetails, setExperienceDetails] = useState({
+  //   company: "",
+  //   positionTitle: "",
+  //   startDate: "",
+  //   endDate: "",
+  //   location: "",
+  //   bulletPoints: [{ id: "init", description: "", isActive: true }], // [{id: 0, description: .lkjflka}, {id:1, description: llfjdlkf}]
+  // });
+
+  const [experiencesArr, setExperiencesArr] = useState([
+    {
+      id: "init",
+      company: "",
+      positionTitle: "",
+      startDate: "",
+      endDate: "",
+      location: "",
+      bulletPoints: [{ id: "init", description: "", isActive: true }], // [{id: 0, description: .lkjflka}, {id:1, description: llfjdlkf}]
+    },
+  ]);
+
+  const [activeExpId, setActiveExpId] = useState("init");
+
+  const activeExpIndex = experiencesArr.findIndex(
+    (exp) => exp.id === activeExpId
+  );
+
+  console.log({ activeExpId });
+  console.log({ activeExpIndex });
 
   const [activeBulletId, setActiveBulletId] = useState("init");
   console.log({ activeBulletId });
 
-  const activeBulletIndex = experienceDetails.bulletPoints.findIndex(
-    (bulletPoint) => bulletPoint.id === activeBulletId
-  );
-  console.log(activeBulletIndex);
+  const activeBulletIndex = experiencesArr[
+    activeExpIndex
+  ].bulletPoints.findIndex((bulletPoint) => bulletPoint.id === activeBulletId);
+  console.log({ activeBulletIndex });
 
   const [activeFormId, setActiveFormId] = useState(0);
 
   const curBulletPoint =
-    experienceDetails.bulletPoints[activeBulletIndex]?.description || "";
+    experiencesArr[activeExpIndex].bulletPoints[activeBulletIndex]
+      ?.description || "";
 
   console.log(curBulletPoint);
 
   function handleFormToggle(formId) {
     if (formId === activeFormId) return setActiveFormId(null);
+
     setActiveFormId(formId);
+    // setActiveBulletId();
   }
 
   function handlePersonalInput(detailType, e) {
@@ -61,42 +89,45 @@ function App() {
 
   function handleExperienceInput(detailType, e) {
     // DO NOT use this function for the bullet input on the form - use the handleBulletInput instead
-    setExperienceDetails({
-      ...experienceDetails,
-      [detailType]: e.target.value,
-    });
+    const newExperiencesArr = [...experiencesArr];
+    newExperiencesArr[activeExpIndex][detailType] = e.target.value;
+
+    setExperiencesArr(newExperiencesArr);
   }
 
   function handleBulletInput(e) {
-    if (experienceDetails.bulletPoints.length === 0) return;
-    const newBulletPointsArr = [...experienceDetails.bulletPoints];
+    if (experiencesArr[activeExpIndex].bulletPoints.length === 0) return;
+    const newBulletPointsArr = [...experiencesArr[activeExpIndex].bulletPoints];
     newBulletPointsArr[activeBulletIndex].description = e.target.value;
 
-    setExperienceDetails({
-      ...experienceDetails,
-      bulletPoints: newBulletPointsArr,
-    });
+    const newExperiencesArr = [...experiencesArr];
+    newExperiencesArr[activeExpIndex].bulletPoints = newBulletPointsArr;
+
+    setExperiencesArr(newExperiencesArr);
   }
 
   function handleBulletClick(selectedBulletId) {
-    console.log(experienceDetails.bulletPoints);
-    const selectedBulletIndex = experienceDetails.bulletPoints.findIndex(
-      (bulletPoint) => {
-        return bulletPoint.id == selectedBulletId;
-      }
-    );
+    console.log(experiencesArr[activeExpIndex].bulletPoints);
+    const selectedBulletIndex = experiencesArr[
+      activeExpIndex
+    ].bulletPoints.findIndex((bulletPoint) => {
+      return bulletPoint.id == selectedBulletId;
+    });
 
     console.log({ selectedBulletIndex });
-    const newBulletPointsArr = [...experienceDetails.bulletPoints];
+    const newBulletPointsArr = [...experiencesArr[activeExpIndex].bulletPoints];
     newBulletPointsArr.forEach(
       (bulletObj, i) => (bulletObj.isActive = selectedBulletIndex === i)
     );
 
-    setActiveBulletId(experienceDetails.bulletPoints[selectedBulletIndex].id);
-    setExperienceDetails({
-      ...experienceDetails,
-      bulletPoints: newBulletPointsArr,
-    });
+    const newExperiencesArr = [...experiencesArr];
+    newExperiencesArr[activeExpIndex].bulletPoints = newBulletPointsArr;
+
+    setActiveBulletId(
+      experiencesArr[activeExpIndex].bulletPoints[selectedBulletIndex].id
+    );
+
+    setExperiencesArr(newExperiencesArr);
   }
 
   function handleBulletAdd() {
@@ -105,31 +136,31 @@ function App() {
       description: "",
     };
 
-    const newBulletPointsArr = [...experienceDetails.bulletPoints];
+    const newBulletPointsArr = [...experiencesArr[activeExpIndex].bulletPoints];
     newBulletPointsArr.push(bulletPointObj);
 
-    setExperienceDetails({
-      ...experienceDetails,
-      bulletPoints: newBulletPointsArr,
-    });
+    const newExperiencesArr = [...experiencesArr];
+    newExperiencesArr[activeExpIndex].bulletPoints = newBulletPointsArr;
+
+    setExperiencesArr(newExperiencesArr);
 
     setActiveBulletId(bulletPointObj.id);
 
-    console.log(experienceDetails);
+    console.log(experiencesArr);
   }
 
   // handles what happens when the user clicks the remove bullet button
   function handleBulletRemove() {
-    if (experienceDetails.bulletPoints.length === 0) return;
-    const newBulletPointsArr = [...experienceDetails.bulletPoints].toSpliced(
-      activeBulletIndex,
-      1
-    );
+    if (experiencesArr[activeExpIndex].bulletPoints.length === 0) return;
+    const newBulletPointsArr = [
+      ...experiencesArr[activeExpIndex].bulletPoints,
+    ].toSpliced(activeBulletIndex, 1);
 
-    setExperienceDetails({
-      ...experienceDetails,
-      bulletPoints: newBulletPointsArr,
-    });
+    const newExperiencesArr = [...experiencesArr];
+    newExperiencesArr[activeExpIndex].bulletPoints = newBulletPointsArr;
+
+    setExperiencesArr(newExperiencesArr);
+
     // this controls what the activeBulletId state will be set to after deleting the active item
 
     if (newBulletPointsArr.length === 0) {
@@ -137,6 +168,28 @@ function App() {
     } else {
       setActiveBulletId(newBulletPointsArr[newBulletPointsArr.length - 1].id);
     }
+  }
+
+  function handleExperienceAdd(e) {
+    e.preventDefault();
+    console.log(experiencesArr);
+
+    const newExperienceObj = {
+      id: uuidv4(),
+      company: "",
+      positionTitle: "",
+      startDate: "",
+      endDate: "",
+      location: "",
+      bulletPoints: [{ id: uuidv4(), description: "", isActive: true }], // [{id: 0, description: .lkjflka}, {id:1, description: llfjdlkf}]
+    };
+
+    const newExperiencesArr = [...experiencesArr];
+    newExperiencesArr.push(newExperienceObj);
+
+    setExperiencesArr(newExperiencesArr);
+    setActiveExpId(newExperienceObj.id);
+    setActiveBulletId(newExperienceObj.bulletPoints[0].id);
   }
 
   return (
@@ -156,8 +209,8 @@ function App() {
           formId={1}
           isActive={activeFormId === 1}
         />
-        <ExperienceForm
-          experienceDetails={experienceDetails}
+        {/* <ExperienceForm
+          experienceDetails={experiencesArr[0]}
           handleInput={handleExperienceInput}
           handleFormToggle={handleFormToggle}
           formId={2}
@@ -167,12 +220,28 @@ function App() {
           curBulletPoint={curBulletPoint}
           handleBulletInput={handleBulletInput}
           handleBulletClick={handleBulletClick}
-        />
+        /> */}
+        {experiencesArr.map((experienceObj) => (
+          <ExperienceForm
+            key={experienceObj.id}
+            experienceDetails={experienceObj}
+            handleInput={handleExperienceInput}
+            handleFormToggle={handleFormToggle}
+            formId={experienceObj.id}
+            isActive={activeFormId === experienceObj.id}
+            handleBulletAdd={handleBulletAdd}
+            handleBulletRemove={handleBulletRemove}
+            curBulletPoint={curBulletPoint}
+            handleBulletInput={handleBulletInput}
+            handleBulletClick={handleBulletClick}
+          />
+        ))}
+        <AddExperienceButton handleClick={handleExperienceAdd} />
       </div>
       <ResumePreview
         personalDetails={personalDetails}
         educationDetails={educationDetails}
-        experienceDetails={experienceDetails}
+        experienceDetails={experiencesArr[0]}
         curBulletPoint={curBulletPoint}
       />
     </>
