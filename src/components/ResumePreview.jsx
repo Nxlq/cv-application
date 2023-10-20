@@ -63,7 +63,22 @@ function BulletPoints({ children }) {
   return <ul>{children}</ul>;
 }
 
-function ExperienceSection({ experienceDetails }) {
+// function ExperiencePiece({ experienceDetails }) {
+//   if (!experienceDetails) return;
+//   const {
+//     company,
+//     positionTitle,
+//     startDate,
+//     endDate,
+//     location,
+//     curBulletPoint,
+//     bulletPoints,
+//   } = experienceDetails;
+//   return;
+// }
+
+function ExperienceSection({ experienceDetails, experienceArr }) {
+  if (!experienceDetails) return;
   const {
     company,
     positionTitle,

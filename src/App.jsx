@@ -10,6 +10,10 @@ function AddExperienceButton({ handleClick }) {
   return <button onClick={(e) => handleClick(e)}>Add Experience</button>;
 }
 
+function RemoveExperienceButton({ handleClick }) {
+  return <button onClick={(e) => handleClick(e)}>Remove Experience</button>;
+}
+
 function App() {
   const [personalDetails, setPersonalDetails] = useState({
     fullName: "",
@@ -61,13 +65,13 @@ function App() {
 
   const activeBulletIndex = experiencesArr[
     activeExpIndex
-  ].bulletPoints.findIndex((bulletPoint) => bulletPoint.id === activeBulletId);
+  ]?.bulletPoints.findIndex((bulletPoint) => bulletPoint.id === activeBulletId);
   console.log({ activeBulletIndex });
 
   const [activeFormId, setActiveFormId] = useState(0);
 
   const curBulletPoint =
-    experiencesArr[activeExpIndex].bulletPoints[activeBulletIndex]
+    experiencesArr[activeExpIndex]?.bulletPoints[activeBulletIndex]
       ?.description || "";
 
   console.log(curBulletPoint);
@@ -210,6 +214,16 @@ function App() {
     setActiveFormId(newExperienceObj.id);
   }
 
+  function handleExperienceRemove(e) {
+    e.preventDefault();
+    console.log(experiencesArr);
+    const newExperienceArr = experiencesArr.toSpliced(activeExpIndex, 1);
+    setExperiencesArr(newExperienceArr);
+    setActiveBulletId(null);
+    setActiveExpId(null);
+    // setActiveExpId(null);
+  }
+
   return (
     <>
       <div>
@@ -255,12 +269,14 @@ function App() {
           />
         ))}
         <AddExperienceButton handleClick={handleExperienceAdd} />
+        <RemoveExperienceButton handleClick={handleExperienceRemove} />
       </div>
       <ResumePreview
         personalDetails={personalDetails}
         educationDetails={educationDetails}
         experienceDetails={experiencesArr[0]}
         curBulletPoint={curBulletPoint}
+        experiencesArr={experiencesArr}
       />
     </>
   );
