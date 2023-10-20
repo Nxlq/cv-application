@@ -74,9 +74,26 @@ function App() {
 
   function handleFormToggle(formId) {
     if (formId === activeFormId) return setActiveFormId(null);
-
     setActiveFormId(formId);
-    // setActiveBulletId();
+
+    // if the clicked form was an experience form then we need to set an active bullet id to one inside the experiencesArr
+    const selectedExperiencesIndex = experiencesArr.findIndex(
+      (expObj) => expObj.id === formId
+    );
+
+    if (selectedExperiencesIndex !== -1) {
+      setActiveExpId(formId);
+      console.log({ activeExpId });
+
+      const bulletsLength =
+        experiencesArr[selectedExperiencesIndex].bulletPoints.length;
+      if (bulletsLength <= 0) return setActiveBulletId(null);
+      console.log("HAHAHAHAHHA");
+      setActiveBulletId(
+        experiencesArr[selectedExperiencesIndex].bulletPoints[bulletsLength - 1]
+          .id
+      );
+    }
   }
 
   function handlePersonalInput(detailType, e) {
@@ -190,6 +207,7 @@ function App() {
     setExperiencesArr(newExperiencesArr);
     setActiveExpId(newExperienceObj.id);
     setActiveBulletId(newExperienceObj.bulletPoints[0].id);
+    setActiveFormId(newExperienceObj.id);
   }
 
   return (
