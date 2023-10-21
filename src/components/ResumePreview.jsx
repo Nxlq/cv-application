@@ -1,4 +1,6 @@
 import "../styles/ResumePreview.css";
+import { useReactToPrint } from "react-to-print";
+import { useRef } from "react";
 
 function ResumeHead({ personalDetails }) {
   const { fullName, email, phoneNumber, location } = personalDetails;
@@ -121,11 +123,19 @@ export default function ResumePreview({
   educationDetails,
   experiencesArr,
 }) {
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
   return (
-    <div className="resume-preview__container">
-      <ResumeHead personalDetails={personalDetails} />
-      <EducationSection educationDetails={educationDetails} />
-      <ExperienceSection experiencesArr={experiencesArr} />
-    </div>
+    <>
+      <div ref={componentRef} className="resume-preview__container">
+        <ResumeHead personalDetails={personalDetails} />
+        <EducationSection educationDetails={educationDetails} />
+        <ExperienceSection experiencesArr={experiencesArr} />
+      </div>
+      <button onClick={handlePrint}>Print to Pdf</button>
+    </>
   );
 }
