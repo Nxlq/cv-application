@@ -274,7 +274,7 @@ function App() {
       <ResumePreview
         personalDetails={personalDetails}
         educationDetails={educationDetails}
-        experienceDetails={experiencesArr[0]}
+        experienceDetails={experiencesArr[activeExpIndex]}
         curBulletPoint={curBulletPoint}
         experiencesArr={experiencesArr}
       />

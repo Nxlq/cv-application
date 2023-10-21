@@ -63,21 +63,7 @@ function BulletPoints({ children }) {
   return <ul>{children}</ul>;
 }
 
-// function ExperiencePiece({ experienceDetails }) {
-//   if (!experienceDetails) return;
-//   const {
-//     company,
-//     positionTitle,
-//     startDate,
-//     endDate,
-//     location,
-//     curBulletPoint,
-//     bulletPoints,
-//   } = experienceDetails;
-//   return;
-// }
-
-function ExperienceSection({ experienceDetails, experienceArr }) {
+function ExperiencePiece({ experienceDetails }) {
   if (!experienceDetails) return;
   const {
     company,
@@ -89,8 +75,7 @@ function ExperienceSection({ experienceDetails, experienceArr }) {
     bulletPoints,
   } = experienceDetails;
   return (
-    <section>
-      <h3>Experience</h3>
+    <>
       <div className="experience-header__wrapper">
         <div>
           <h4>{positionTitle ? positionTitle : "Position Title"}</h4>
@@ -113,6 +98,20 @@ function ExperienceSection({ experienceDetails, experienceArr }) {
             ))
           : null}
       </BulletPoints>
+    </>
+  );
+}
+
+function ExperienceSection({ experiencesArr }) {
+  return (
+    <section>
+      <h3>Experience</h3>
+      {experiencesArr.map((experience, i) => (
+        <ExperiencePiece
+          key={experience.id}
+          experienceDetails={experiencesArr[i]}
+        />
+      ))}
     </section>
   );
 }
@@ -120,13 +119,13 @@ function ExperienceSection({ experienceDetails, experienceArr }) {
 export default function ResumePreview({
   personalDetails,
   educationDetails,
-  experienceDetails,
+  experiencesArr,
 }) {
   return (
     <div className="resume-preview__container">
       <ResumeHead personalDetails={personalDetails} />
       <EducationSection educationDetails={educationDetails} />
-      <ExperienceSection experienceDetails={experienceDetails} />
+      <ExperienceSection experiencesArr={experiencesArr} />
     </div>
   );
 }
