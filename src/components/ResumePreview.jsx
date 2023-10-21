@@ -75,8 +75,8 @@ function ExperiencePiece({ experienceDetails }) {
     bulletPoints,
   } = experienceDetails;
   return (
-    <>
-      <div className="experience__wrapper">
+    <div className="experience__container">
+      <div className="experience-header__wrapper">
         <div>
           <h4>{positionTitle ? positionTitle : "Position Title"}</h4>
           <h5>{company ? company : "Company Name"}</h5>
@@ -98,7 +98,7 @@ function ExperiencePiece({ experienceDetails }) {
             ))
           : null}
       </BulletPoints>
-    </>
+    </div>
   );
 }
 

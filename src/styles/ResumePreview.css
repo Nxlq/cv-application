@@ -2,13 +2,14 @@
   border: solid 1px black;
   padding: 2.3rem;
   --section-border: solid black 2px;
+  display: flex;
+  flex-direction: column;
+  flex: 0;
 }
 
 .section-header {
   border-bottom: var(--section-border);
 }
-
-/* -------------------- RESUME HEAD SYLING -------------------- */
 
 .resume-head__wrapper {
   justify-content: center;
@@ -28,8 +29,6 @@
   margin: 0;
 }
 
-/* -------------------- Education Section -------------------- */
-
 h3,
 h4,
 h5,
@@ -44,11 +43,14 @@ p {
   padding-bottom: 20px;
 }
 
-.experience__wrapper {
+.experience-header__wrapper {
   display: flex;
   justify-content: space-between;
-  /* border-top: var(--section-border); */
-  padding-bottom: 7px;
+  /* padding-bottom: 7px; */
+}
+
+.experience__container {
+  padding-bottom: 1rem;
 }
 
 .date-location {
@@ -75,4 +77,6 @@ h5 {
 
 ul {
   margin: 0;
+  /* padding-left: 1.2rem; */
+  text-wrap: wrap;
 }
