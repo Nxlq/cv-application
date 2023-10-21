@@ -34,7 +34,7 @@ function EducationSection({ educationDetails }) {
 
   return (
     <section>
-      <h3>Education</h3>
+      <h3 className="section-header">Education</h3>
       <div className="section__wrapper">
         <div>
           <h4>
@@ -76,7 +76,7 @@ function ExperiencePiece({ experienceDetails }) {
   } = experienceDetails;
   return (
     <>
-      <div className="experience-header__wrapper">
+      <div className="experience__wrapper">
         <div>
           <h4>{positionTitle ? positionTitle : "Position Title"}</h4>
           <h5>{company ? company : "Company Name"}</h5>
@@ -105,7 +105,7 @@ function ExperiencePiece({ experienceDetails }) {
 function ExperienceSection({ experiencesArr }) {
   return (
     <section>
-      <h3>Experience</h3>
+      <h3 className="section-header">Experience</h3>
       {experiencesArr.map((experience, i) => (
         <ExperiencePiece
           key={experience.id}

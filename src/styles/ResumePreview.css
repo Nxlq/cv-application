@@ -4,6 +4,10 @@
   --section-border: solid black 2px;
 }
 
+.section-header {
+  border-bottom: var(--section-border);
+}
+
 /* -------------------- RESUME HEAD SYLING -------------------- */
 
 .resume-head__wrapper {
@@ -35,16 +39,15 @@ p {
 }
 
 .section__wrapper {
-  border-top: var(--section-border);
   display: flex;
   justify-content: space-between;
   padding-bottom: 20px;
 }
 
-.experience-header__wrapper {
+.experience__wrapper {
   display: flex;
   justify-content: space-between;
-  border-top: var(--section-border);
+  /* border-top: var(--section-border); */
   padding-bottom: 7px;
 }
 
