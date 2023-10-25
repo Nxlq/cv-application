@@ -9,6 +9,7 @@ form {
   border: solid 1px black;
   border-radius: 7px;
   width: 25rem;
+  background-color: white;
 }
 
 form h2 {
@@ -25,6 +26,7 @@ form button {
   width: 10rem;
   height: 3rem;
   align-self: center;
+  background-color: white;
 }
 
 .remove-exp-btn {

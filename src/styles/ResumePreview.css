@@ -7,16 +7,15 @@
 
 .resume__container button {
   align-self: flex-start;
-}
-
-.resume__container button {
   border: solid black 1px;
   width: 10rem;
   font-size: 1.3rem;
+  background-color: white;
 }
 
 .resume-preview__wrapper {
   border: solid 1px black;
+  background-color: white;
 }
 .resume-preview {
   width: 8.5in;
@@ -25,6 +24,7 @@
   --section-border: solid black 2px;
   display: flex;
   flex-direction: column;
+  background-color: white;
   /* flex: 0; */
   /* grid-row-start: 1;
   grid-column-start: 2; */

@@ -399,6 +399,7 @@ body {
   justify-content: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: rgb(247, 245, 245);
 }
 
 h1 {
@@ -429,12 +430,12 @@ button:focus-visible {
   :root {
     /* color: #213547; */
     color: black;
-    background-color: #ffffff;
+    background-color: #efefef;
   }
   a:hover {
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #f4f4f4;
   }
 }
