@@ -27,7 +27,7 @@ export default function EducationForm({
         </button>
       </div>
       {!isActive ? null : (
-        <div className="form-inputs__wrapper">
+        <div className="form-inputs__wrapper visible">
           <label>
             Name of school
             <input

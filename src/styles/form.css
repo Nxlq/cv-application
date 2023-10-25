@@ -10,6 +10,7 @@ form {
   border-radius: 7px;
   width: 25rem;
   background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 form h2 {
@@ -27,6 +28,7 @@ form button {
   height: 3rem;
   align-self: center;
   background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .remove-exp-btn {
@@ -35,6 +37,9 @@ form button {
 
 .bullet-tab {
   border: solid 1px black;
+}
+.bullet-tab:focus {
+  outline: 4px auto -webkit-focus-ring-color;
 }
 
 .form-header__wrapper {
@@ -101,4 +106,23 @@ input::placeholder {
 .bullet-btns__wrapper button {
   width: 45%;
   border: solid black 1px;
+}
+
+.visible {
+  animation: expand 50ms;
+  transform-origin: top;
+}
+
+@keyframes expand {
+  0% {
+    transform: scaleY(0);
+  }
+
+  /* 80% {
+    transform: scaleY();
+  } */
+
+  100% {
+    transform: scaleY(1);
+  }
 }

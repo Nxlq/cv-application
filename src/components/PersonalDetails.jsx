@@ -28,7 +28,7 @@ export default function PersonalDetailsForm({
         </button>
       </div>
       {!isActive ? null : (
-        <div className="form-inputs__wrapper">
+        <div className="form-inputs__wrapper visible">
           <label>
             Full name
             <input

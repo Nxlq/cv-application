@@ -6,16 +6,19 @@
 }
 
 .resume__container button {
+  /* PDF button*/
   align-self: flex-start;
   border: solid black 1px;
   width: 10rem;
   font-size: 1.3rem;
   background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .resume-preview__wrapper {
   border: solid 1px black;
   background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 .resume-preview {
   width: 8.5in;

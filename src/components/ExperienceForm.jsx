@@ -53,7 +53,7 @@ export default function ExperienceForm({
         </button>
       </div>
       {!isActive ? null : (
-        <div className="form-inputs__wrapper">
+        <div className="form-inputs__wrapper visible">
           <label>
             Position Title
             <input
