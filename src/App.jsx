@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "/src/styles/App.css";
 import PersonalDetailsForm from "./components/PersonalDetails";
 import ResumePreview from "./components/ResumePreview";

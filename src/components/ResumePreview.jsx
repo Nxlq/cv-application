@@ -124,18 +124,21 @@ export default function ResumePreview({
   experiencesArr,
 }) {
   const componentRef = useRef();
+  console.log({ componentRef });
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
 
   return (
-    <>
-      <div ref={componentRef} className="resume-preview__container">
-        <ResumeHead personalDetails={personalDetails} />
-        <EducationSection educationDetails={educationDetails} />
-        <ExperienceSection experiencesArr={experiencesArr} />
+    <div className="resume__container">
+      <div className="resume-preview__wrapper">
+        <div ref={componentRef} className="resume-preview">
+          <ResumeHead personalDetails={personalDetails} />
+          <EducationSection educationDetails={educationDetails} />
+          <ExperienceSection experiencesArr={experiencesArr} />
+        </div>
       </div>
-      <button onClick={handlePrint}>Print to Pdf</button>
-    </>
+      <button onClick={handlePrint}>Save as PDF</button>
+    </div>
   );
 }

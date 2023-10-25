@@ -3,7 +3,9 @@
   /* margin: 0 auto; */
   padding: 2rem;
   /* text-align: center; */
-  display: grid;
+  /* display: grid;
   gap: 20px;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 1fr 8.5in; */
+  display: flex;
+  gap: 20px;
 }
