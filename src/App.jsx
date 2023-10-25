@@ -263,6 +263,7 @@ function App() {
             handleBulletClick={handleBulletClick}
             handleExperienceRemove={handleExperienceRemove}
             expNumber={i + 1}
+            activeBulletId={activeBulletId}
           />
         ))}
         <AddExperienceButton handleClick={handleExperienceAdd} />

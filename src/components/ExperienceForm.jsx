@@ -1,11 +1,15 @@
 import { RemoveExperienceButton } from "../App";
 import "../styles/form.css";
 
-function BulletTab({ bulletCount, handleClick, id }) {
+function BulletTab({ bulletCount, handleClick, id, activeBulletId }) {
+  const activeStyle = {
+    outline: "4px auto darkred",
+  };
   return (
     <>
       <button
         className="bullet-tab"
+        style={id === activeBulletId ? activeStyle : null}
         onClick={(e) => {
           e.preventDefault();
           console.log(id);
@@ -31,6 +35,7 @@ export default function ExperienceForm({
   handleBulletClick,
   handleExperienceRemove,
   expNumber,
+  activeBulletId,
 }) {
   const { company, positionTitle, startDate, endDate, location, bulletPoints } =
     experienceDetails;
@@ -121,6 +126,7 @@ export default function ExperienceForm({
                 id={bulletPointObj.id}
                 bulletCount={i + 1}
                 handleClick={handleBulletClick}
+                activeBulletId={activeBulletId}
               />
             ))}
             <div className="bullet-btns__wrapper">
