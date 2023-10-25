@@ -30,6 +30,7 @@ export default function ExperienceForm({
   handleBulletInput,
   handleBulletClick,
   handleExperienceRemove,
+  expNumber,
 }) {
   const { company, positionTitle, startDate, endDate, location, bulletPoints } =
     experienceDetails;
@@ -37,7 +38,7 @@ export default function ExperienceForm({
   return (
     <form action="">
       <div className="form-header__wrapper">
-        <h2>Experience</h2>
+        <h2>Experience {expNumber}</h2>
         <button
           className="btn-toggle-form"
           onClick={(e) => {

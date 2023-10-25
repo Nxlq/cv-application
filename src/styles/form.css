@@ -54,6 +54,7 @@ svg {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  padding-top: 0.8rem;
 }
 
 label {

@@ -261,7 +261,7 @@ function App() {
           handleBulletInput={handleBulletInput}
           handleBulletClick={handleBulletClick}
         /> */}
-        {experiencesArr.map((experienceObj) => (
+        {experiencesArr.map((experienceObj, i) => (
           <ExperienceForm
             key={experienceObj.id}
             experienceDetails={experienceObj}
@@ -275,6 +275,7 @@ function App() {
             handleBulletInput={handleBulletInput}
             handleBulletClick={handleBulletClick}
             handleExperienceRemove={handleExperienceRemove}
+            expNumber={i + 1}
           />
         ))}
         <AddExperienceButton handleClick={handleExperienceAdd} />
