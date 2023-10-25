@@ -229,7 +229,6 @@ function App() {
     setExperiencesArr(newExperienceArr);
     setActiveBulletId(null);
     setActiveExpId(null);
-    // setActiveExpId(null);
   }
 
   return (
@@ -249,18 +248,6 @@ function App() {
           formId={1}
           isActive={activeFormId === 1}
         />
-        {/* <ExperienceForm
-          experienceDetails={experiencesArr[0]}
-          handleInput={handleExperienceInput}
-          handleFormToggle={handleFormToggle}
-          formId={2}
-          isActive={activeFormId === 2}
-          handleBulletAdd={handleBulletAdd}
-          handleBulletRemove={handleBulletRemove}
-          curBulletPoint={curBulletPoint}
-          handleBulletInput={handleBulletInput}
-          handleBulletClick={handleBulletClick}
-        /> */}
         {experiencesArr.map((experienceObj, i) => (
           <ExperienceForm
             key={experienceObj.id}

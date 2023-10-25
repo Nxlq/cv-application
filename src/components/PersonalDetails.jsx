@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "../styles/form.css";
 
 export default function PersonalDetailsForm({
