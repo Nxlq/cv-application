@@ -7,11 +7,19 @@ import ExperienceForm from "./components/ExperienceForm";
 import { v4 as uuidv4 } from "uuid";
 
 function AddExperienceButton({ handleClick }) {
-  return <button onClick={(e) => handleClick(e)}>Add Experience</button>;
+  return (
+    <button className="add-exp-btn" onClick={(e) => handleClick(e)}>
+      Add Experience
+    </button>
+  );
 }
 
-function RemoveExperienceButton({ handleClick }) {
-  return <button onClick={(e) => handleClick(e)}>Remove Experience</button>;
+export function RemoveExperienceButton({ handleClick }) {
+  return (
+    <button className="remove-exp-btn" onClick={(e) => handleClick(e)}>
+      Remove Experience
+    </button>
+  );
 }
 
 function App() {
@@ -92,7 +100,7 @@ function App() {
       const bulletsLength =
         experiencesArr[selectedExperiencesIndex].bulletPoints.length;
       if (bulletsLength <= 0) return setActiveBulletId(null);
-      console.log("HAHAHAHAHHA");
+
       setActiveBulletId(
         experiencesArr[selectedExperiencesIndex].bulletPoints[bulletsLength - 1]
           .id
@@ -226,7 +234,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className="forms__container">
         <PersonalDetailsForm
           personalDetails={personalDetails}
           handleInput={handlePersonalInput}
@@ -266,10 +274,10 @@ function App() {
             curBulletPoint={curBulletPoint}
             handleBulletInput={handleBulletInput}
             handleBulletClick={handleBulletClick}
+            handleExperienceRemove={handleExperienceRemove}
           />
         ))}
         <AddExperienceButton handleClick={handleExperienceAdd} />
-        <RemoveExperienceButton handleClick={handleExperienceRemove} />
       </div>
       <ResumePreview
         personalDetails={personalDetails}

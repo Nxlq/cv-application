@@ -1,9 +1,11 @@
+import { RemoveExperienceButton } from "../App";
 import "../styles/form.css";
 
 function BulletTab({ bulletCount, handleClick, id }) {
   return (
     <>
       <button
+        className="bullet-tab"
         onClick={(e) => {
           e.preventDefault();
           console.log(id);
@@ -27,6 +29,7 @@ export default function ExperienceForm({
   curBulletPoint,
   handleBulletInput,
   handleBulletClick,
+  handleExperienceRemove,
 }) {
   const { company, positionTitle, startDate, endDate, location, bulletPoints } =
     experienceDetails;
@@ -138,6 +141,7 @@ export default function ExperienceForm({
               </button>
             </div>
           </label>
+          <RemoveExperienceButton handleClick={handleExperienceRemove} />
         </div>
       )}
     </form>

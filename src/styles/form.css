@@ -1,3 +1,9 @@
+.forms__container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 form {
   padding: 2rem 2rem 2.7rem 2rem;
   border: solid 1px black;
@@ -8,7 +14,25 @@ form {
 form h2 {
   padding: 0;
   margin: 0;
-  padding-bottom: 1.3rem;
+  /* padding-bottom: 1.3rem; */
+}
+
+form button {
+  border: 1px solid transparent;
+}
+
+.add-exp-btn {
+  width: 10rem;
+  height: 3rem;
+  align-self: center;
+}
+
+.remove-exp-btn {
+  border: solid 1px black;
+}
+
+.bullet-tab {
+  border: solid 1px black;
 }
 
 .form-header__wrapper {
