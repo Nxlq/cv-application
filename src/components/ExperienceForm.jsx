@@ -77,6 +77,15 @@ export default function ExperienceForm({
               onChange={(e) => handleInput("company", e)}
             ></input>
           </label>
+          <label>
+            Location
+            <input
+              type="text"
+              placeholder="City, State"
+              value={location}
+              onChange={(e) => handleInput("location", e)}
+            ></input>
+          </label>
           <div className="start-end-date__wrapper">
             <label>
               Start Date
@@ -99,15 +108,6 @@ export default function ExperienceForm({
               ></input>
             </label>
           </div>
-          <label>
-            Location
-            <input
-              type="text"
-              placeholder="City, State"
-              value={location}
-              onChange={(e) => handleInput("location", e)}
-            ></input>
-          </label>
           <label>
             BulletPoint
             <input

@@ -56,21 +56,21 @@ export default function EducationForm({
             ></input>
           </label>
           <label>
-            Date Graduated
-            <input
-              type="text"
-              placeholder="Month, Year"
-              value={dateGraduated}
-              onChange={(e) => handleInput("dateGraduated", e)}
-            ></input>
-          </label>
-          <label>
             Location
             <input
               type="text"
               placeholder="City, State"
               value={location}
               onChange={(e) => handleInput("location", e)}
+            ></input>
+          </label>
+          <label>
+            Date Graduated
+            <input
+              type="text"
+              placeholder="Month, Year"
+              value={dateGraduated}
+              onChange={(e) => handleInput("dateGraduated", e)}
             ></input>
           </label>
         </div>
